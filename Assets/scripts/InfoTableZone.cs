@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class InfoTableZone : MonoBehaviour
 {
@@ -95,7 +96,6 @@ public class InfoTableZone : MonoBehaviour
     {
         if (currentRigidbody != null)
         {
-            // Zero velocity BEFORE setting kinematic
             currentRigidbody.linearVelocity = Vector3.zero;
             currentRigidbody.angularVelocity = Vector3.zero;
             currentRigidbody.useGravity = false;
@@ -103,10 +103,32 @@ public class InfoTableZone : MonoBehaviour
         }
         if (currentSolid != null)
         {
-            currentSolid.transform.position = floatPoint.position;
-            tableUI.ShowSolid(currentSolid.data, currentSolid.solidColor);
-            isFrozen = true;
+            isFrozen = true; // set early so Update() rotation doesn't fight the coroutine
+            StartCoroutine(FloatToPoint(currentSolid.transform, floatPoint.position, 0.4f));
+            tableUI.ShowSolid(currentSolid.data);
         }
+    }
+
+    private IEnumerator FloatToPoint(Transform solidTransform, Vector3 target, float duration)
+    {
+        Vector3 startPos = solidTransform.position;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            if (solidTransform == null) yield break; // guard if grabbed mid-flight
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+
+            // Smooth ease-out curve
+            t = 1f - Mathf.Pow(1f - t, 3f);
+
+            solidTransform.position = Vector3.Lerp(startPos, target, t);
+            yield return null;
+        }
+
+        if (solidTransform != null)
+            solidTransform.position = target;
     }
 
     private void Update()

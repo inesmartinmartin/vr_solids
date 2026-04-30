@@ -12,9 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c21c74b835a1325469621f1cf028f2f7, type: 3}
   m_Name: Data_Cube
   m_EditorClassIdentifier: Assembly-CSharp::SolidData
-  solidName: Cube
+  solidKey: Cube
+  solidFamily: Platonic
   description: A regular hexahedron...
+  solidColor: {r: 0.34084556, g: 0.85660374, b: 0.27637592, a: 1}
   vertexCount: 8
   edgeCount: 12
   faceCount: 6
-  eulerFormula: V - E + F = 2
+  localizations:
+  - language: 10
+    solidName: Cube
+    solidFamily: Platonic Solid
+    description: Six square faces at right angles. The only Platonic solid that tiles
+      three-dimensional space without gaps.
+    fact1: Dual polyhedron of the octahedron.
+    fact2: The only Platonic solid whose faces are not triangles.
+    fact3: A cube can be divided into five tetrahedra.
+    natureEntries:
+    - title: Halite (table salt)
+      description: Sodium and chloride ions arrange into a perfect cubic crystal
+        lattice.
+      category: 0
+    - title: Pyrite crystals
+      description: Iron sulfide naturally grows cubic crystals visible to the naked
+        eye.
+      category: 2
+    - title: Galena
+      description: Lead sulfide forms cubic cleavage fragments.
+      category: 0
+  - language: 7
+    solidName: 
+    solidFamily: 
+    description: 
+    fact1: 
+    fact2: 
+    fact3: 
+    natureEntries: []

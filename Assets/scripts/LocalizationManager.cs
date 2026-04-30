@@ -6,6 +6,7 @@ public class LocalizationManager : MonoBehaviour
     private UIStrings current;
 
     public static LocalizationManager Instance { get; private set; }
+    public SystemLanguage CurrentLanguage => current.language;
 
     private void Awake()
     {

@@ -11,23 +11,36 @@ public class InfoTableUI : MonoBehaviour
     [Header("Idle panel")]
     public TextMeshProUGUI idleText;
 
-    [Header("Solid panel")]
-    public Image panelBackground;
+    [Header("Identity")]
+    public Image accentBar;
+    public TextMeshProUGUI solidFamilyText;
     public TextMeshProUGUI solidNameText;
+    public TextMeshProUGUI descriptionText;
+
+    [Header("Geometry")]
+    public TextMeshProUGUI geometryLabel;
     public TextMeshProUGUI vertexStatText;
     public TextMeshProUGUI edgeStatText;
     public TextMeshProUGUI faceStatText;
-    public TextMeshProUGUI descriptionText;
     public TextMeshProUGUI eulerText;
+
+    [Header("Facts")]
+    public TextMeshProUGUI factsLabel;
+    public TextMeshProUGUI fact1Text;
+    public TextMeshProUGUI fact2Text;
+    public TextMeshProUGUI fact3Text;
+
+    [Header("Nature entries")]
+    public TextMeshProUGUI natureLabel;
+    public NatureEntryUI[] natureEntryUIs;  // assign 3 prefab instances in Inspector
 
     [Header("Buttons")]
     public Button verticesButton;
     public Button edgesButton;
-    public Button netButton; // will be disabled for now
+    public Button netButton;
 
-    [Header("Color settings")]
-    // How much to tint — 0 = white panel, 1 = full solid color
-    [Range(0f, 1f)] public float colorTintStrength = 0.25f;
+    [Header("Settings")]
+    [Range(0f, 1f)] public float accentAlpha = 0.9f;
 
     private bool showingVertices = false;
     private bool showingEdges = false;
@@ -35,22 +48,23 @@ public class InfoTableUI : MonoBehaviour
     private void Start()
     {
         ShowIdle();
-        // Wire up buttons
         verticesButton.onClick.AddListener(ToggleVertices);
         edgesButton.onClick.AddListener(ToggleEdges);
-        netButton.interactable = false; // coming soon
-
-        // Apply localized strings to buttons and idle text
+        netButton.interactable = false;
         ApplyLocalization();
     }
 
     private void ApplyLocalization()
     {
         var s = LocalizationManager.Instance.Strings;
-        idleText.text = s.dropPrompt;
+        idleText.text               = s.dropPrompt;
+        geometryLabel.text          = s.geometryLabel;
+        factsLabel.text             = s.factsLabel;
+        natureLabel.text            = s.natureLabel;
+
         verticesButton.GetComponentInChildren<TextMeshProUGUI>().text = s.showVerticesBtn;
-        edgesButton.GetComponentInChildren<TextMeshProUGUI>().text = s.showEdgesBtn;
-        netButton.GetComponentInChildren<TextMeshProUGUI>().text = s.showNetBtn;
+        edgesButton.GetComponentInChildren<TextMeshProUGUI>().text    = s.showEdgesBtn;
+        netButton.GetComponentInChildren<TextMeshProUGUI>().text      = s.showNetBtn;
     }
 
     public void ShowIdle()
@@ -61,57 +75,66 @@ public class InfoTableUI : MonoBehaviour
         showingEdges = false;
     }
 
-    public void ShowSolid(SolidData data, Color solidColor)
+    public void ShowSolid(SolidData data)
     {
+        Debug.Log("ShowSolid called with: " + (data != null ? data.solidKey : "NULL DATA"));
         idlePanel.SetActive(false);
         solidPanel.SetActive(true);
 
         var s = LocalizationManager.Instance.Strings;
+        var lang = LocalizationManager.Instance.CurrentLanguage;
+        var content = data.GetContent(lang);
 
-        solidNameText.text = data.solidName;
-        descriptionText.text = data.description;
-        eulerText.text = $"{s.eulerLabel}  {data.eulerFormula}";
+        // accent bar
+        Color accent = data.solidColor;
+        accent.a = accentAlpha;
+        accentBar.color = accent;
 
+        // identity
+        solidFamilyText.text  = content.solidFamily;
+        solidNameText.text    = content.solidName;
+        descriptionText.text  = content.description;
+
+        // geometry
         vertexStatText.text = $"{s.verticesLabel}\n{data.vertexCount}";
         edgeStatText.text   = $"{s.edgesLabel}\n{data.edgeCount}";
         faceStatText.text   = $"{s.facesLabel}\n{data.faceCount}";
+        eulerText.text      = $"{s.eulerLabel}  {data.vertexCount} − {data.edgeCount} + {data.faceCount} = 2";
 
-        // Tint the background toward the solid's color
-        panelBackground.color = Color.Lerp(Color.white, solidColor, colorTintStrength);
+        // facts
+        fact1Text.text = content.fact1;
+        fact2Text.text = content.fact2;
+        fact3Text.text = content.fact3;
 
-        // Reset button states
+        // nature entries
+        for (int i = 0; i < natureEntryUIs.Length; i++)
+        {
+            bool hasEntry = content.natureEntries != null && i < content.natureEntries.Length;
+            natureEntryUIs[i].gameObject.SetActive(hasEntry);
+            if (hasEntry)
+                natureEntryUIs[i].Populate(content.natureEntries[i], s);
+        }
+
         showingVertices = false;
         showingEdges = false;
         UpdateButtonVisuals();
     }
 
-    private void ToggleVertices()
-    {
-        showingVertices = !showingVertices;
-        UpdateButtonVisuals();
-        // Hook this up to your highlight manager later
-    }
-
-    private void ToggleEdges()
-    {
-        showingEdges = !showingEdges;
-        UpdateButtonVisuals();
-        // Hook this up to your highlight manager later
-    }
+    private void ToggleVertices() { showingVertices = !showingVertices; UpdateButtonVisuals(); }
+    private void ToggleEdges()    { showingEdges    = !showingEdges;    UpdateButtonVisuals(); }
 
     private void UpdateButtonVisuals()
     {
-        // Simple active/inactive tint to show toggle state
         SetButtonActive(verticesButton, showingVertices);
-        SetButtonActive(edgesButton, showingEdges);
+        SetButtonActive(edgesButton,    showingEdges);
     }
 
     private void SetButtonActive(Button btn, bool active)
     {
         var colors = btn.colors;
         colors.normalColor = active
-            ? new Color(0.2f, 0.8f, 0.6f) // highlighted teal when on
-            : new Color(1f, 1f, 1f, 0.15f); // subtle when off
+            ? new Color(0.2f, 0.8f, 0.6f)
+            : new Color(1f, 1f, 1f, 0.15f);
         btn.colors = colors;
     }
 }
