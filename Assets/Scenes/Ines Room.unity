@@ -1939,6 +1939,7 @@ MonoBehaviour:
   - {fileID: 188445565}
   vertexSpherePrefab: {fileID: 4800947847809247484, guid: 494998fd0bd419047b227e2d8eb5003d, type: 3}
   sphereRadius: 0.04
+  transparentAlpha: 0.903
 --- !u!114 &613603651
 MonoBehaviour:
   m_ObjectHideFlags: 0
