@@ -12,9 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c21c74b835a1325469621f1cf028f2f7, type: 3}
   m_Name: Data_Dodecahedron
   m_EditorClassIdentifier: Assembly-CSharp::SolidData
-  solidName: Dodecahedron
-  description: desc for dodecahedron
-  vertexCount: 0
-  edgeCount: 0
-  faceCount: 0
-  eulerFormula: V - E + F = 2
+  solidKey: dodecahedron
+  solidFamily: platonic
+  description: desc
+  solidColor: {r: 0.93207544, g: 0.4631592, b: 0.22334634, a: 1}
+  vertexCount: 20
+  edgeCount: 30
+  faceCount: 12
+  localizations:
+  - language: 10
+    solidName: Dodecahedron
+    solidFamily: Platonic Solid
+    description: Twelve pentagons joined in a cosmic symmetry that represents the
+      most intricate of the ancient Greek elements.
+    fact1: Dual polyhedron of the icosahedron.
+    fact2: Plato associated it with the shape of the universe in the Timaeus.
+    fact3: It has exactly 160 distinct internal diagonals connecting its 20 vertices.
+    natureEntries:
+    - title: Garnet crystals
+      description: Some garnet varieties grow with pentagonal dodecahedral faces.
+      category: 2
+    - title: Cosmic large-scale structure
+      description: A 2003 study suggested the universe may have dodecahedral topology.
+      category: 3
+    - title: Acoustic Engineering
+      description: Engineers use speakers in this shape to measure building acoustics
+        because twelve faces allow sound to radiate equally in every direction.
+      category: 0
+  - language: 0
+    solidName: 
+    solidFamily: 
+    description: 
+    fact1: 
+    fact2: 
+    fact3: 
+    natureEntries: []

@@ -12,9 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c21c74b835a1325469621f1cf028f2f7, type: 3}
   m_Name: Data_Icosahedron
   m_EditorClassIdentifier: Assembly-CSharp::SolidData
-  solidName: Icosahedron
-  description: desc for icosahedron
-  vertexCount: 0
-  edgeCount: 0
-  faceCount: 0
-  eulerFormula: V - E + F = 2
+  solidKey: icosahedron
+  solidFamily: platonic
+  description: desc
+  solidColor: {r: 0.4330295, g: 0.78867924, b: 0.68764675, a: 1}
+  vertexCount: 12
+  edgeCount: 30
+  faceCount: 20
+  localizations:
+  - language: 10
+    solidName: Icosahedron
+    solidFamily: Platonic Solid
+    description: Twenty equilateral triangular faces meeting at each vertex. One
+      of the five classical Platonic solids.
+    fact1: Dual polyhedron of the dodecahedron.
+    fact2: Used in D20 dice since ancient times.
+    fact3: Geodesic domes approximate its shape at larger scales.
+    natureEntries:
+    - title: Viral capsids
+      description: Many viruses, like herpes, form icosahedral protein shells.
+      category: 1
+    - title: Radiolaria
+      description: Microscopic marine organisms build icosahedral silica skeletons.
+      category: 1
+    - title: Boron clusters
+      description: "The B\u2081\u2082 unit in boron chemistry forms a perfect icosahedron."
+      category: 0
+  - language: 0
+    solidName: 
+    solidFamily: 
+    description: 
+    fact1: 
+    fact2: 
+    fact3: 
+    natureEntries: []

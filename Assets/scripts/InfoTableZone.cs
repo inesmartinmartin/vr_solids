@@ -5,14 +5,17 @@ public class InfoTableZone : MonoBehaviour
 {
     public Transform floatPoint;
     public float rotationSpeed = 30f;
+    public SolidIdentity CurrentSolid => currentSolid;
 
     [Header("UI")]
     public InfoTableUI tableUI;
+
 
     private SolidIdentity currentSolid;
     private Rigidbody currentRigidbody;
     private bool isFrozen = false;
     private bool isInsideZone = false;
+
 
     private void OnTriggerEnter(Collider other)
     {

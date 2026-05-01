@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c21c74b835a1325469621f1cf028f2f7, type: 3}
   m_Name: Data_Cube
   m_EditorClassIdentifier: Assembly-CSharp::SolidData
-  solidKey: Cube
-  solidFamily: Platonic
-  description: A regular hexahedron...
+  solidKey: cube
+  solidFamily: platonic
+  description: desc
   solidColor: {r: 0.34084556, g: 0.85660374, b: 0.27637592, a: 1}
   vertexCount: 8
   edgeCount: 12
@@ -26,7 +26,7 @@ MonoBehaviour:
     description: Six square faces at right angles. The only Platonic solid that tiles
       three-dimensional space without gaps.
     fact1: Dual polyhedron of the octahedron.
-    fact2: The only Platonic solid whose faces are not triangles.
+    fact2: The only Platonic solid whose faces are squares.
     fact3: A cube can be divided into five tetrahedra.
     natureEntries:
     - title: Halite (table salt)

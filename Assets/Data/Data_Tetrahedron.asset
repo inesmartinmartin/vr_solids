@@ -12,9 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c21c74b835a1325469621f1cf028f2f7, type: 3}
   m_Name: Data_Tetrahedron
   m_EditorClassIdentifier: Assembly-CSharp::SolidData
-  solidName: Tetrahedron
-  description: desc for tetrahedron
+  solidKey: tetrahedron
+  solidFamily: platonic
+  description: desc
+  solidColor: {r: 0.9622642, g: 0.60096115, b: 0.76827455, a: 1}
   vertexCount: 4
   edgeCount: 6
   faceCount: 4
-  eulerFormula: V - E + F = 2
+  localizations:
+  - language: 10
+    solidName: Tetrahedron
+    solidFamily: Platonic Solid
+    description: The most fundamental three-dimensional shape consisting of four
+      triangular faces that provide maximum structural rigidity.
+    fact1: The only self-dual Platonic solid because its dual is another tetrahedron.
+    fact2: Minimum number of faces needed to enclose a 3D volume.
+    fact3: The strongest structural shape used in truss engineering.
+    natureEntries:
+    - title: "Methane (CH\u2084)"
+      description: Four hydrogen atoms arrange tetrahedrally around a carbon atom.
+      category: 0
+    - title: Diamond lattice
+      description: Each carbon in diamond is tetrahedrally bonded to four neighbours.
+      category: 0
+    - title: Silicate minerals
+      description: "SiO\u2084 units form tetrahedral building blocks in most rock-forming
+        minerals."
+      category: 2
+  - language: 0
+    solidName: 
+    solidFamily: 
+    description: 
+    fact1: 
+    fact2: 
+    fact3: 
+    natureEntries: []

@@ -120,7 +120,25 @@ public class InfoTableUI : MonoBehaviour
         UpdateButtonVisuals();
     }
 
-    private void ToggleVertices() { showingVertices = !showingVertices; UpdateButtonVisuals(); }
+    public void ToggleVertices()
+    {
+        InfoTableZone zone = FindFirstObjectByType<InfoTableZone>();
+        if (zone == null) { Debug.LogError("ToggleVertices: InfoTableZone not found in scene"); return; }
+
+        SolidIdentity currentSolid = zone.CurrentSolid;
+        if (currentSolid == null) { Debug.LogError("ToggleVertices: CurrentSolid is null — is a solid on the table?"); return; }
+
+        Debug.Log("ToggleVertices: found solid — " + currentSolid.gameObject.name);
+
+        VertexHighlighter vh = currentSolid.gameObject.GetComponent<VertexHighlighter>();
+        if (vh == null) { Debug.LogError("ToggleVertices: VertexHighlighter component missing on " + currentSolid.gameObject.name); return; }
+
+        Debug.Log("ToggleVertices: calling Toggle()");
+        vh.Toggle();
+
+        showingVertices = !showingVertices;
+        UpdateButtonVisuals();
+    }
     private void ToggleEdges()    { showingEdges    = !showingEdges;    UpdateButtonVisuals(); }
 
     private void UpdateButtonVisuals()

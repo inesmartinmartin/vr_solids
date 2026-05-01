@@ -12,9 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c21c74b835a1325469621f1cf028f2f7, type: 3}
   m_Name: Data_Octahedron
   m_EditorClassIdentifier: Assembly-CSharp::SolidData
-  solidName: Octahedron
-  description: desc for octahedron
-  vertexCount: 0
-  edgeCount: 0
-  faceCount: 0
-  eulerFormula: V - E + F = 2
+  solidKey: octahedron
+  solidFamily: platonic
+  description: desc
+  solidColor: {r: 0.3260319, g: 0.16363825, b: 0.5320754, a: 1}
+  vertexCount: 6
+  edgeCount: 12
+  faceCount: 8
+  localizations:
+  - language: 10
+    solidName: Octahedron
+    solidFamily: Platonic Solid
+    description: A dual pyramid structure formed by eight triangles that naturally
+      emerges in high-pressure mineral formations.
+    fact1: Two square pyramids joined at their bases.
+    fact2: Same number of edges as the cube (12) which is a consequence of duality.
+    fact3: If sliced through its center parallel to a face, you get a regular hexagonal
+      cross section
+    natureEntries:
+    - title: Fluorite crystals
+      description: Calcium fluoride naturally cleaves into perfect octahedral shapes.
+      category: 0
+    - title: Diamond rough
+      description: Raw diamonds often form octahedral crystals before cutting.
+      category: 0
+    - title: Molecular geometry
+      description: Many transition metal complexes adopt octahedral coordination
+        geometry.
+      category: 2
+  - language: 0
+    solidName: 
+    solidFamily: 
+    description: 
+    fact1: 
+    fact2: 
+    fact3: 
+    natureEntries: []
