@@ -50,7 +50,7 @@ public class InfoTableUI : MonoBehaviour
         ShowIdle();
         verticesButton.onClick.AddListener(ToggleVertices);
         edgesButton.onClick.AddListener(ToggleEdges);
-        netButton.interactable = false;
+        netButton.onClick.AddListener(ToggleNet);
         ApplyLocalization();
     }
 
@@ -139,7 +139,36 @@ public class InfoTableUI : MonoBehaviour
         showingVertices = !showingVertices;
         UpdateButtonVisuals();
     }
-    private void ToggleEdges()    { showingEdges    = !showingEdges;    UpdateButtonVisuals(); }
+    public void ToggleEdges()
+    {
+        InfoTableZone zone = FindFirstObjectByType<InfoTableZone>();
+        if (zone == null) { Debug.LogError("ToggleEdges: InfoTableZone not found"); return; }
+
+        SolidIdentity currentSolid = zone.CurrentSolid;
+        if (currentSolid == null) { Debug.LogError("ToggleEdges: no solid on table"); return; }
+
+        EdgeHighlighter eh = currentSolid.gameObject.GetComponent<EdgeHighlighter>();
+        if (eh == null) { Debug.LogError("ToggleEdges: EdgeHighlighter missing on " + currentSolid.gameObject.name); return; }
+
+        eh.Toggle();
+
+        showingEdges = !showingEdges;
+        UpdateButtonVisuals();
+    }
+
+    public void ToggleNet()
+    {
+        InfoTableZone zone = FindFirstObjectByType<InfoTableZone>();
+        if (zone == null) { Debug.LogError("ToggleNet: InfoTableZone not found"); return; }
+
+        SolidIdentity currentSolid = zone.CurrentSolid;
+        if (currentSolid == null) { Debug.LogError("ToggleNet: no solid on table"); return; }
+
+        NetAnimator na = currentSolid.gameObject.GetComponent<NetAnimator>();
+        if (na == null) { Debug.LogError("ToggleNet: NetAnimator missing on " + currentSolid.gameObject.name); return; }
+
+        na.Toggle();
+    }
 
     private void UpdateButtonVisuals()
     {

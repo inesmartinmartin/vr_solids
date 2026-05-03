@@ -6,6 +6,7 @@ public class InfoTableZone : MonoBehaviour
     public Transform floatPoint;
     public float rotationSpeed = 30f;
     public SolidIdentity CurrentSolid => currentSolid;
+    
 
     [Header("UI")]
     public InfoTableUI tableUI;
@@ -85,6 +86,9 @@ public class InfoTableZone : MonoBehaviour
             {
                 currentRigidbody.isKinematic = false;
                 currentRigidbody.useGravity = true;
+                NetAnimator na = currentSolid.gameObject.GetComponent<NetAnimator>();
+                if (na != null && na.IsUnfolded)
+                    na.FoldImmediate();
             }
             currentSolid = null;
             currentRigidbody = null;
@@ -138,7 +142,11 @@ public class InfoTableZone : MonoBehaviour
     {
         if (currentSolid != null && isFrozen)
         {
-            currentSolid.transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+            NetAnimator na = currentSolid.gameObject.GetComponent<NetAnimator>();
+            bool netActive = na != null && (na.IsUnfolded || na.IsAnimating);
+
+            if (!netActive)
+                currentSolid.transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
         }
     }
 }
