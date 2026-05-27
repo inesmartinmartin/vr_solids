@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: UIStrings_CZ
   m_EditorClassIdentifier: Assembly-CSharp::UIStrings
   language: 7
-  dropPrompt: "Polo\u017E t\u011Bleso sem"
+  dropPrompt: "Vítejte! Polo\u017Ete t\u011Bleso sem a dozv\u011Dte se o n\u011Bm více"
+  geometryLabel: Geometrie
+  factsLabel: "Zajímavosti"
+  natureLabel: "Kde ho najít v přírodě"
   verticesLabel: Vrcholy
   edgesLabel: Hrany
   facesLabel: "St\u011Bny"
@@ -21,3 +24,9 @@ MonoBehaviour:
   showVerticesBtn: Vrcholy
   showEdgesBtn: Hrany
   showNetBtn: "S\xED\u0165"
+  categoryChemistry: Chemie
+  categoryBiology: Biologie
+  categoryMineralogy: "Mineralogie"
+  categoryAstronomy: "Astronomie"
+  categoryEngineering: "Inženýrství"
+  categoryOther: "Ostatní"
