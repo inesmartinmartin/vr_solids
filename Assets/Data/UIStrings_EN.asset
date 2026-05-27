@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: UIStrings_EN
   m_EditorClassIdentifier: Assembly-CSharp::UIStrings
   language: 10
-  dropPrompt: Drop your solid here
+  dropPrompt: WELCOME! Place a solid here to learn more about it
+  geometryLabel: Geometry
+  factsLabel: Fun Facts
+  natureLabel: Where to find in nature
   verticesLabel: Vertices
   edgesLabel: Edges
   facesLabel: Faces
@@ -21,3 +24,9 @@ MonoBehaviour:
   showVerticesBtn: Vertices
   showEdgesBtn: Edges
   showNetBtn: Net
+  categoryChemistry: 
+  categoryBiology: 
+  categoryMineralogy: 
+  categoryAstronomy: 
+  categoryEngineering: 
+  categoryOther: 

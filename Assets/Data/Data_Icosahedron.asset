@@ -36,7 +36,7 @@ MonoBehaviour:
       description: Microscopic marine organisms build icosahedral silica skeletons.
       category: 1
     - title: Boron clusters
-      description: "The B\u2081\u2082 unit in boron chemistry forms a perfect icosahedron."
+      description: The B12 unit in boron chemistry forms a perfect icosahedron.
       category: 0
   - language: 0
     solidName: 

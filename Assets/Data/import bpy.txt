@@ -1,0 +1,36 @@
+import bpy
+obj = bpy.context.active_object
+if obj and obj.type == 'MESH':
+    target_coll = obj.users_collection[0]
+    matrix_world = obj.matrix_world
+    for v in obj.data.vertices:
+        world_pos = matrix_world @ v.co
+        empty = bpy.data.objects.new("V_Empty", None)
+        empty.location = world_pos
+        empty.empty_display_size = 0.1
+        target_coll.objects.link(empty)
+        empty.parent = obj
+        empty.matrix_parent_inverse = matrix_world.inverted()
+    print(f"Done! Created {len(obj.data.vertices)} empties in '{target_coll.name}'")
+else:
+    print("Error: Please select your mesh object in the 3D Viewport first.")
+
+import bpy
+obj = bpy.context.active_object
+if obj and obj.type == 'MESH':
+    target_coll = obj.users_collection[0]
+    matrix_world = obj.matrix_world
+    for i, edge in enumerate(obj.data.edges):
+        v1 = matrix_world @ obj.data.vertices[edge.vertices[0]].co
+        v2 = matrix_world @ obj.data.vertices[edge.vertices[1]].co
+        midpoint = (v1 + v2) / 2
+        name = f"E_{edge.vertices[0]:02d}_{edge.vertices[1]:02d}"
+        empty = bpy.data.objects.new(name, None)
+        empty.location = midpoint
+        empty.empty_display_size = 0.05
+        target_coll.objects.link(empty)
+        empty.parent = obj
+        empty.matrix_parent_inverse = matrix_world.inverted()
+    print(f"Done! Created {len(obj.data.edges)} edge empties in '{target_coll.name}'")
+else:
+    print("Error: Please select your mesh object first.")

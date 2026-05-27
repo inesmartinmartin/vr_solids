@@ -36,8 +36,8 @@ MonoBehaviour:
       description: A 2003 study suggested the universe may have dodecahedral topology.
       category: 3
     - title: Acoustic Engineering
-      description: Engineers use speakers in this shape to measure building acoustics
-        because twelve faces allow sound to radiate equally in every direction.
+      description: Speakers in this shape are used to measure acoustics,  sound radiates
+        equally in every direction.
       category: 0
   - language: 0
     solidName: 
